@@ -144,7 +144,7 @@ func GetOpenstackToken() *gophercloud.ServiceClient {
 	if err != nil {
 		panic(err)
 	}
-	client, err := openstack.NewComputeV2(provider, gophercloud.EndpointOpts{Region: "RegionOne"})
+	client, err := openstack.NewComputeV2(provider, gophercloud.EndpointOpts{Region: os.Getenv("OS_REGION_NAME"),})
 	if err != nil {
 		panic(err)
 	}
