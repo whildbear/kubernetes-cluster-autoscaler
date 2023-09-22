@@ -150,7 +150,9 @@ func GetNodeName() string {
 // TriggerAddNode Create new OpenStack virtual machine
 func TriggerAddNode(flavorName string) {
 	defer PanicRecovery()
+	log.Println("[DEBUG] before GetOpenstackToken")
 	client := openstackinit.GetOpenstackToken()
+	log.Println("[DEBUG] before servers.CreateOpts")
 
 	serverCreatOpts := servers.CreateOpts{
 		Name:           GetNodeName(),
@@ -160,7 +162,9 @@ func TriggerAddNode(flavorName string) {
 		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID}},
 	}
 
+	log.Println("[DEBUG] before servers.Create")
 	server, err := servers.Create(client, serverCreatOpts).Extract()
+	log.Println("[DEBUG] after servers.Create")
 	if err != nil {
 		panic(err)
 	}
