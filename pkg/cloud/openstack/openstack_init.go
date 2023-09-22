@@ -2,8 +2,8 @@ package openstackinit
 
 import (
 	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/common/datastructures"
-	"github.com/rackspace/gophercloud"
-	"github.com/rackspace/gophercloud/openstack"
+	"github.com/gophercloud/gophercloud"
+	"github.com/gophercloud/gophercloud/openstack"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
