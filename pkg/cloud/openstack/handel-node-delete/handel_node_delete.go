@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/cloud/openstack"
 	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/common/datastructures"
-	"github.com/rackspace/gophercloud/openstack/compute/v2/servers"
+	"github.com/rackspace/gophercloud/gophercloud/compute/v2/servers"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
