@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"time"
+	"os"
 )
 
 // FlavorsList, and other list og global variables
