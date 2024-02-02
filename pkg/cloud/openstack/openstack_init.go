@@ -14,7 +14,9 @@ import (
 // FlavorsList, and other list og global variables
 var (
 	FlavorsList         datastructures.FlavorList
-	NetworkUUID         string
+	NetworkUUID_a         string
+        NetworkUUID_d         string
+	NetworkUUID_p         string
 	CoolDownTime        time.Duration
 	IgnoreNamespaceList map[string]bool
 	MinNodeCount        int
@@ -66,7 +68,10 @@ type AuthOptions struct {
 // when creating worker nodes
 type Network struct {
 	SecurityGroupName string `yaml:"SecurityGroupName"`
-	NetworkUUID       string `yaml:"NetworkUUID"`
+	NetworkUUID_a       string `yaml:"NetworkUUID_a"`
+	NetworkUUID_p       string `yaml:"NetworkUUID_p"`
+	NetworkUUID_d       string `yaml:"NetworkUUID_d"`
+
 }
 
 // OpenStackFlavours user configured Open Stack Flavours in the config file.
@@ -121,7 +126,10 @@ func ReadConfig() string {
 	ImageName = conf.WorkerImageName
 	RepoBaseUrl = conf.RepoBaseUrl
 	SecurityGroupName = conf.Network.SecurityGroupName
-	NetworkUUID = conf.Network.NetworkUUID
+	NetworkUUID_a = conf.Network.NetworkUUID_a
+	NetworkUUID_p = conf.Network.NetworkUUID_p
+	NetworkUUID_d = conf.Network.NetworkUUID_d
+
 
 	FlavorDetails := []datastructures.FlavorDetails{}
 	for _, Flavor := range conf.OpenStackFlavours.Flavours {
