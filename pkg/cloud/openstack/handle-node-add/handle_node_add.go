@@ -153,13 +153,18 @@ func TriggerAddNode(flavorName string) {
 	log.Println("[DEBUG] before GetOpenstackToken")
 	client := openstackinit.GetOpenstackToken()
 	log.Println("[DEBUG] before servers.CreateOpts")
-
+	
+	userData := `#!/usr/bin/env bash
+curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | bash -s -- \
+    -i init
+`
 	serverCreatOpts := servers.CreateOpts{
-		Name:           GetNodeName(),
+		Name:          GetNodeName(),
 		FlavorRef:     flavorName,
 		ImageRef:      openstackinit.ImageName,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
 		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID}},
+		UserData:       []byte(userData),
 	}
 
 	log.Println("[DEBUG] before servers.Create")
