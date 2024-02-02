@@ -156,8 +156,8 @@ func TriggerAddNode(flavorName string) {
 
 	serverCreatOpts := servers.CreateOpts{
 		Name:           GetNodeName(),
-		FlavorName:     flavorName,
-		ImageName:      openstackinit.ImageName,
+		FlavorRef:     flavorName,
+		ImageRef:      openstackinit.ImageName,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
 		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID}},
 	}
