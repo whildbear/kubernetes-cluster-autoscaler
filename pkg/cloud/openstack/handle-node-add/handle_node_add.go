@@ -163,7 +163,7 @@ curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | bash -s -- \
 		FlavorRef:     flavorName,
 		ImageRef:      openstackinit.ImageName,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
-		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID}},
+		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID_a}, {UUID: openstackinit.NetworkUUID_d}, {UUID: openstackinit.NetworkUUID_p}},
 		UserData:       []byte(userData),
 	}
 
