@@ -11,6 +11,8 @@ import (
 	"log"
 	"strconv"
 	"time"
+	"fmt"
+	"strings"
 )
 
 // DeleteEventAnalyzer Analyze Kubernetes events and capture delete event
@@ -50,7 +52,7 @@ func DeleteEventAnalyzer(EventList datastructures.Event, config *rest.Config) {
 		nodeList, _ := clientSet.CoreV1().Nodes().List(context.TODO(), metav1.ListOptions{})
 		nodeCount := len(nodeList.Items)
 
-		if (cpu/cpuCap)*100 <= 5 || count < 5 && openstackinit.MinNodeCount < nodeCount {
+		if (cpu/cpuCap)*100 <= 5 && count < 5 && openstackinit.MinNodeCount < nodeCount && strings.HasPrefix(node.Name, openstackinit.PlatformPrefix+"kube-worker-") {
 			log.Printf("[INFO] Node Name - %s ID - %s marked to delete. Will delete in %d minutes", node.Name, node.Status.NodeInfo.SystemUUID, openstackinit.CoolDownTime/60)
 			go RemoveWorkerNode(clientSet, node.Name, node.Status.NodeInfo.SystemUUID)
 		} else {
