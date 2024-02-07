@@ -157,17 +157,13 @@ func GetOpenstackToken() *gophercloud.ServiceClient {
 	}
 
 	provider, err := openstack.AuthenticatedClient(opts)
-	log.Println("[DEBUG] after  AuthenticatedClient")
-
+ 
 	if err != nil {
 		panic(err)
 	}
 	client, err := openstack.NewComputeV2(provider, gophercloud.EndpointOpts{Region: os.Getenv("OS_REGION_NAME"),})
-	log.Println("[DEBUG] after  NewComputeV2")
-	if err != nil {
-		panic(err)
+ 	if err != nil {		panic(err)
 	}
-	log.Println("[DEBUG] before   GetOpenstackToken return")
-
+ 
 	return client
 }
