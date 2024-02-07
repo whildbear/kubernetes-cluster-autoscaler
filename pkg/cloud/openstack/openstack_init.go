@@ -22,6 +22,7 @@ var (
 	MinNodeCount        int
 	MaxNodeCount        int
 	ImageName           string
+	PlatformPrefix	    string
 	RepoBaseUrl	    string
 	SecurityGroupName   string
 	IdentityEndpoint    string
@@ -42,6 +43,7 @@ type ConfigYaml struct {
 	AuthOptions        AuthOptions       `yaml:"AuthOptions"`
 	Network            Network           `yaml:"Network"`
 	WorkerImageName    string            `yaml:"WorkerImageName"`
+	PlatformPrefix	   string            `yaml:"PlatformPrefix"`
 	RepoBaseUrl        string            `yaml:"RepoBaseUrl"`
 	CoolDownTime       int               `yaml:"CoolDownTime"`
 	MinNodeCount       int               `yaml:"MinNodeCount"`
@@ -124,6 +126,7 @@ func ReadConfig() string {
 	MinNodeCount = conf.MinNodeCount
 	MaxNodeCount = conf.MaxNodeCount
 	ImageName = conf.WorkerImageName
+	PlatformPrefix = conf.PlatformPrefix
 	RepoBaseUrl = conf.RepoBaseUrl
 	SecurityGroupName = conf.Network.SecurityGroupName
 	NetworkUUID_a = conf.Network.NetworkUUID_a
