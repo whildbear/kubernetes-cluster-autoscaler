@@ -144,15 +144,13 @@ func GetNodeName() string {
 		b.WriteRune(chars[rand.Intn(len(chars))])
 	}
 	str := b.String()
-	return "kube-worker-" + str
+	return openstackinit.PlatformPrefix+"kube-worker-" + str
 }
 
 // TriggerAddNode Create new OpenStack virtual machine
 func TriggerAddNode(flavorName string) {
 	defer PanicRecovery()
-	log.Println("[DEBUG] before GetOpenstackToken")
 	client := openstackinit.GetOpenstackToken()
-	log.Println("[DEBUG] before servers.CreateOpts")
 	 
 	userData := `#!/usr/bin/env bash
 curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | bash -s -- \
@@ -167,9 +165,7 @@ curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | bash -s -- \
 		UserData:       []byte(userData),
 	}
 
-	log.Println("[DEBUG] before servers.Create")
 	server, err := servers.Create(client, serverCreatOpts).Extract()
-	log.Println("[DEBUG] after servers.Create")
 	if err != nil {
 		panic(err)
 	}
