@@ -53,6 +53,9 @@ func DeleteEventAnalyzer(EventList datastructures.Event, config *rest.Config) {
 		if (cpu/cpuCap)*100 <= 5 || count < 5 && openstackinit.MinNodeCount < nodeCount {
 			log.Printf("[INFO] Node Name - %s ID - %s marked to delete. Will delete in %d minutes", node.Name, node.Status.NodeInfo.SystemUUID, openstackinit.CoolDownTime/60)
 			go RemoveWorkerNode(clientSet, node.Name, node.Status.NodeInfo.SystemUUID)
+		} else {
+			log.Printf("[INFO] Node Name - %s ID - %s NOT marked to delete. nodeCount = %d count = %d cpu = %d cpuCap = %d ", node.Name, node.Status.NodeInfo.SystemUUID, nodeCount, count, cpu, cpuCap )
+
 		}
 	}
 }
