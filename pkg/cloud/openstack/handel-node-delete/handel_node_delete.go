@@ -55,7 +55,7 @@ func DeleteEventAnalyzer(EventList datastructures.Event, config *rest.Config) {
 			log.Printf("[INFO] Node Name - %s ID - %s marked to delete. Will delete in %d minutes", node.Name, node.Status.NodeInfo.SystemUUID, openstackinit.CoolDownTime/60)
 			go RemoveWorkerNode(clientSet, node.Name, node.Status.NodeInfo.SystemUUID)
 		} else {
-			log.Printf("[INFO] Node Name - %s ID - %s NOT marked to delete. nodeCount = %d count = %d cpu = %d cpuCap = %d ", node.Name, node.Status.NodeInfo.SystemUUID, nodeCount, count, cpu, cpuCap )
+			log.Printf("[INFO] Node Name - %s ID - %s NOT marked to delete. nodeCount = %d count = %d cpu = %f cpuCap = %f ", node.Name, node.Status.NodeInfo.SystemUUID, nodeCount, count, cpu, cpuCap )
 
 		}
 	}
