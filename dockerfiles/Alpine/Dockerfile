@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine
+FROM golang:1.22.0-alpine3.19
 WORKDIR /root
 RUN \
   apk update && \
@@ -8,7 +8,7 @@ RUN \
   go build -o autoscaler  cmd/main.go
 
 
-FROM golang:1.15-alpine
+FROM golang:1.22.0-alpine3.19
 WORKDIR /go/bin
 COPY --from=0 /root/kubernetes-cluster-autoscaler/autoscaler .
 CMD ["./autoscaler"]
