@@ -6,6 +6,7 @@ RUN \
   git clone https://github.com/WassimDhib/kubernetes-cluster-autoscaler.git && \
   cd kubernetes-cluster-autoscaler && \
   go mod download github.com/gophercloud/gophercloud && \
+  go mod download github.com/gophercloud/utils && \
   go build -o autoscaler  cmd/main.go
 
 
