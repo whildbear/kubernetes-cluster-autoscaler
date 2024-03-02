@@ -8,7 +8,6 @@ RUN \
   go mod download github.com/gophercloud/gophercloud && \
   go mod download github.com/gophercloud/utils && \
   go mod download golang.org/x/crypto && \
-  go get -u && \
   go mod tidy && \
   go build -o autoscaler  cmd/main.go
 
