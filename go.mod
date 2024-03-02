@@ -3,7 +3,8 @@ module github.com/Chathuru/kubernetes-cluster-autoscaler
 go 1.22.0
 
 require (
-	github.com/gophercloud/gophercloud v2.0.0-beta.2
+	github.com/gophercloud/gophercloud v1.8.0
+	github.com/gophercloud/utils v0.0.0-20221207145018-e8fba78967ca
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/rackspace/gophercloud v1.0.1-0.20161013232434-e00690e87603
