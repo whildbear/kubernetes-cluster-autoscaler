@@ -5,6 +5,7 @@ RUN \
   apk add git build-base && \
   git clone https://github.com/WassimDhib/kubernetes-cluster-autoscaler.git && \
   cd kubernetes-cluster-autoscaler && \
+  go mod download github.com/gophercloud/gophercloud && \
   go build -o autoscaler  cmd/main.go
 
 
