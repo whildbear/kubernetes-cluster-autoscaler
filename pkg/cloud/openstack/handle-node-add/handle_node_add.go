@@ -156,11 +156,11 @@ func TriggerAddNode(flavorName string) {
 	client := openstackinit.GetOpenstackToken()
 
         imageId, err := images.IDFromName(client, openstackinit.ImageName)
-
 	flavorID, err := flavors.IDFromName(client, flavorName)	 
-
 	NetworkUUID_a, err := networks.IDFromName(client, openstackinit.NetworkUUID_a)
-	
+	NetworkUUID_d, err := networks.IDFromName(client, openstackinit.NetworkUUID_d)
+	NetworkUUID_p, err := networks.IDFromName(client, openstackinit.NetworkUUID_p)
+
 	userData := `#!/usr/bin/env bash
 curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
@@ -170,7 +170,7 @@ curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
 		FlavorRef:     flavorID,
 		ImageRef:      imageId,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
-		Networks:       []servers.Network{{UUID: NetworkUUID_a}, {UUID: openstackinit.NetworkUUID_d}, {UUID: openstackinit.NetworkUUID_p}},
+		Networks:       []servers.Network{{UUID: NetworkUUID_a}, {UUID: NetworkUUID_d}, {UUID: NetworkUUID_p}},
 		UserData:       []byte(userData),
 	}
 
