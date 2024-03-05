@@ -7,6 +7,7 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 	"github.com/gophercloud/utils/openstack/imageservice/v2/images"
 	"github.com/gophercloud/utils/openstack/compute/v2/flavors"
+	"github.com/gophercloud/utils/openstack/networking/v2/networks"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -157,17 +158,19 @@ func TriggerAddNode(flavorName string) {
         imageId, err := images.IDFromName(client, openstackinit.ImageName)
 
 	flavorID, err := flavors.IDFromName(client, flavorName)	 
+
+	NetworkUUID_a, err := networks.IDFromName(client, openstackinit.NetworkUUID_a)
 	
 	userData := `#!/usr/bin/env bash
 curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
 `
 	serverCreatOpts := servers.CreateOpts{
-		Name:          GetNodeName(),
+		Name:          GetNodeName(),NetworkUUID_a
 		FlavorRef:     flavorID,
 		ImageRef:      imageId,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
-		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID_a}, {UUID: openstackinit.NetworkUUID_d}, {UUID: openstackinit.NetworkUUID_p}},
+		Networks:       []servers.Network{{UUID: NetworkUUID_a}, {UUID: openstackinit.NetworkUUID_d}, {UUID: openstackinit.NetworkUUID_p}},
 		UserData:       []byte(userData),
 	}
 
