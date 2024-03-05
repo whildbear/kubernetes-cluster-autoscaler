@@ -166,7 +166,7 @@ curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
 `
 	serverCreatOpts := servers.CreateOpts{
-		Name:          GetNodeName(),NetworkUUID_a
+		Name:          GetNodeName(),
 		FlavorRef:     flavorID,
 		ImageRef:      imageId,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
