@@ -156,7 +156,7 @@ func TriggerAddNode(flavorName string) {
         imageId, err := images.IDFromName(client, openstackinit.ImageName)
 	 
 	userData := `#!/usr/bin/env bash
-curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | bash -s -- \
+curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
 `
 	serverCreatOpts := servers.CreateOpts{
