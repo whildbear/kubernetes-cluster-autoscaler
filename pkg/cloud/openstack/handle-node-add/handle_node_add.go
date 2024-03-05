@@ -6,6 +6,7 @@ import (
 	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/common/datastructures"
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 	"github.com/gophercloud/utils/openstack/imageservice/v2/images"
+	"github.com/gophercloud/utils/openstack/compute/v2/flavors"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -154,14 +155,16 @@ func TriggerAddNode(flavorName string) {
 	client := openstackinit.GetOpenstackToken()
 
         imageId, err := images.IDFromName(client, openstackinit.ImageName)
-	 
+
+	flavorID, err := flavors.IDFromName(client, flavorName)	 
+	
 	userData := `#!/usr/bin/env bash
 curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
 `
 	serverCreatOpts := servers.CreateOpts{
 		Name:          GetNodeName(),
-		FlavorRef:     flavorName,
+		FlavorRef:     flavorID,
 		ImageRef:      imageId,
 		SecurityGroups: []string{openstackinit.SecurityGroupName},
 		Networks:       []servers.Network{{UUID: openstackinit.NetworkUUID_a}, {UUID: openstackinit.NetworkUUID_d}, {UUID: openstackinit.NetworkUUID_p}},
