@@ -155,13 +155,14 @@ func GetNodeName() string {
 func TriggerAddNode(flavorName string) {
 	defer PanicRecovery()
 	client := openstackinit.GetOpenstackToken()
+	client_neutron := openstackinit.GetOpenstackNeutronToken()
 
         imageId, err := images.IDFromName(client, openstackinit.ImageName)
 	flavorID, err := flavors.IDFromName(client, flavorName)	 
-	SecurityGroupId, err := groups.IDFromName(client, openstackinit.SecurityGroupName)
-	NetworkUUID_a, err := networks.IDFromName(client, openstackinit.NetworkUUID_a)
-	NetworkUUID_d, err := networks.IDFromName(client, openstackinit.NetworkUUID_d)
-	NetworkUUID_p, err := networks.IDFromName(client, openstackinit.NetworkUUID_p)
+	SecurityGroupId, err := groups.IDFromName(client_neutron, openstackinit.SecurityGroupName)
+	NetworkUUID_a, err := networks.IDFromName(client_neutron, openstackinit.NetworkUUID_a)
+	NetworkUUID_d, err := networks.IDFromName(client_neutron, openstackinit.NetworkUUID_d)
+	NetworkUUID_p, err := networks.IDFromName(client_neutron, openstackinit.NetworkUUID_p)
 	Node_Name := GetNodeName()
 	
 	userData := `#!/usr/bin/env bash
