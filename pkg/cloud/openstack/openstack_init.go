@@ -167,3 +167,30 @@ func GetOpenstackToken() *gophercloud.ServiceClient {
  
 	return client
 }
+
+
+
+// GetOpenstackNeutronToken authenticate OpenStack cloud for Neutron
+func GetOpenstackNeutronToken() *gophercloud.ServiceClient {
+	
+	opts := gophercloud.AuthOptions{
+		IdentityEndpoint: IdentityEndpoint,
+		Username:         Username,
+		Password:         Password,
+		TenantID:         TenantID,
+		DomainName:       DomainName,
+	}
+
+	provider, err := openstack.AuthenticatedClient(opts)
+ 
+	if err != nil {
+		panic(err)
+	}
+	client, err := openstack.NewNetworkV2(provider, gophercloud.EndpointOpts{Region: os.Getenv("OS_REGION_NAME"),})
+ 	if err != nil {		panic(err)
+	}
+ 
+	return client
+}
+
+
