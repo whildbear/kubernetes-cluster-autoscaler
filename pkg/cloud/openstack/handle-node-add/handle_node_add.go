@@ -162,13 +162,16 @@ func TriggerAddNode(flavorName string) {
 	NetworkUUID_a, err := networks.IDFromName(client, openstackinit.NetworkUUID_a)
 	NetworkUUID_d, err := networks.IDFromName(client, openstackinit.NetworkUUID_d)
 	NetworkUUID_p, err := networks.IDFromName(client, openstackinit.NetworkUUID_p)
-
+	Node_Name := GetNodeName()
+	
 	userData := `#!/usr/bin/env bash
 curl -L -s `+openstackinit.RepoBaseUrl+`/install.sh | sudo bash -s -- \
     -i init
 `
+
+	log.Printf("[INFO] Creating new node with config : Node_Name = %s, imageId = %s, flavorID = %s, SecurityGroupId = %s, NetworkUUID_a = %s, NetworkUUID_d = %s, NetworkUUID_p = %s", Node_Name, imageId, flavorID, SecurityGroupId, NetworkUUID_a, NetworkUUID_d, NetworkUUID_p )
 	serverCreatOpts := servers.CreateOpts{
-		Name:          GetNodeName(),
+		Name:          Node_Name,
 		FlavorRef:     flavorID,
 		ImageRef:      imageId,
 		SecurityGroups: []string{SecurityGroupId},
