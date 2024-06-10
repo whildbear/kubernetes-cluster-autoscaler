@@ -1,13 +1,19 @@
-FROM golang:1.15
+FROM golang:1.22
 
 WORKDIR /root
 RUN \
-  git clone https://github.com/Chathuru/kubernetes-cluster-autoscaler.git && \
+  git clone https://github.com/WassimDhib/kubernetes-cluster-autoscaler.git && \
   cd kubernetes-cluster-autoscaler && \
+  go mod download github.com/gophercloud/gophercloud && \
+  go mod download github.com/gophercloud/utils && \
+  go mod download golang.org/x/crypto && \
+  go mod tidy && \
   go build -o autoscaler  cmd/main.go
 
 
-FROM golang:1.15
+
+
+FROM golang:1.22
 WORKDIR /go/bin
 COPY --from=0 /root/kubernetes-cluster-autoscaler/autoscaler .
 CMD ["./autoscaler"]
