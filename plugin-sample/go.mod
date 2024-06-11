@@ -3,7 +3,7 @@ module AWS
 go 1.15
 
 require (
-	github.com/Chathuru/kubernetes-cluster-autoscaler v0.0.0-20201122084515-8da9d7bdee6a
+	github.com/whildbear/kubernetes-cluster-autoscaler v0.0.0-20201122084515-8da9d7bdee6a
 	github.com/aws/aws-sdk-go v1.35.33
 	github.com/google/gofuzz v1.2.0 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect

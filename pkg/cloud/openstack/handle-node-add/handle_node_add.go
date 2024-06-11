@@ -2,8 +2,8 @@ package handlenodeadd
 
 import (
 	"context"
-	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/cloud/openstack"
-	"github.com/Chathuru/kubernetes-cluster-autoscaler/pkg/common/datastructures"
+	"github.com/whildbear/kubernetes-cluster-autoscaler/pkg/cloud/openstack"
+	"github.com/whildbear/kubernetes-cluster-autoscaler/pkg/common/datastructures"
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
 	"github.com/gophercloud/utils/openstack/imageservice/v2/images"
 	"github.com/gophercloud/utils/openstack/compute/v2/flavors"
