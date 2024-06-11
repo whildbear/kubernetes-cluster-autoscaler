@@ -3,7 +3,7 @@ WORKDIR /root
 RUN \
   apk update && \
   apk add git build-base && \
-  git clone https://github.com/WassimDhib/kubernetes-cluster-autoscaler.git && \
+  git clone https://github.com/whildbear/kubernetes-cluster-autoscaler.git && \
   cd kubernetes-cluster-autoscaler && \
   go mod download github.com/gophercloud/gophercloud && \
   go mod download github.com/gophercloud/utils && \
